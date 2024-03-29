@@ -2,7 +2,7 @@ __Update and install ansible&neovim__
 ```
 pacman -Syu --noconfirm && \
 pacman -S ansible neovim git --noconfirm && \
-git clone https://github.com/ctheil/ansible /home/ansible
+git clone https://github.com/ctheil/ansible /home
 ```
 ## Start:
 `pacman -S sudo --noconfirm`
