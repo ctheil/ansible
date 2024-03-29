@@ -1,15 +1,25 @@
 - name: Install BAT
   pacman: 
     name: bat
+  tags:
+  - tools
 - name: Install zoxide
   pacman:
     name: zoxide
+  tags:
+  - tools
 - name: Install tmux
   pacman:
     name: tmux
+  tags:
+  - tools
 - name: Install Kitty
   pacman: 
     name: kitty
+  tags:
+  - tools
 - name: install fzf
   pacman: 
     name: fzf
+  tags:
+  - tools

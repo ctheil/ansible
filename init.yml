@@ -9,6 +9,7 @@
       - zdh
       - dotfiles
       - ssh
+      - tools
   vars:
     source_key: "./.ssh/id_ed25519"
     dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
