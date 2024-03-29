@@ -10,3 +10,6 @@
 - name: Install Kitty
   pacman: 
     name: kitty
+- name: install fzf
+  pacman: 
+    name: fzf
