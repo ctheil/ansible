@@ -8,6 +8,7 @@
       - node 
       - zdh
   tasks: 
-  include: tasks/zsh.yml
-  include: tasks/node.yml
+  - include_tasks: tasks/zsh.yml
+  - include_tasks: tasks/node.yml
+  - include_tasks: tasks/tools.yml
 

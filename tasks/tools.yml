@@ -7,3 +7,6 @@
 - name: Install tmux
   pacman:
     name: tmux
+- name: Install Kitty
+  pacman: 
+    name: kitty
