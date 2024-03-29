@@ -1,10 +1,13 @@
+- name: Install stow
+  pacman:
+    name: stow
 - name: Cloning dotfiles
   ansible.builtin.git:
     repo: 'git@github.com:ctheil/dotfiles.git'
     dest: "/home/dotfiles"
     recursive: yes
     update: yes
-    # accept_hostkey: yes
+    accept_hostkey: yes
     version: arch
   tags:
     - dotfiles
