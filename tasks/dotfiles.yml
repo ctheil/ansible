@@ -1,0 +1,4 @@
+- name: Clone Dotfiles
+  ansible.builtin.git:
+    repo: git@github.com:ctheil/dotfiles.git
+      

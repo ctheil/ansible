@@ -1,0 +1,9 @@
+- name: Install BAT
+  pacman: 
+    name: bat
+- name: Install zoxide
+  pacman:
+    name: zoxide
+- name: Install tmux
+  pacman:
+    name: tmux

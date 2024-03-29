@@ -1,0 +1,11 @@
+- name: Install node
+  pacman: 
+    name: ["nodejs", "npm"]
+  tags: 
+  - node
+- name: Install n # BUG: global error
+  npm: 
+    name: n
+    global: true
+  tags: 
+  - node

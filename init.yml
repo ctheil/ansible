@@ -1,0 +1,13 @@
+- hosts: localhost
+  become: true
+  pre_tasks: 
+    - name: Update Cache
+      pacman: 
+        update_cache: true
+      tags: 
+      - node 
+      - zdh
+  tasks: 
+  include: tasks/zsh.yml
+  include: tasks/node.yml
+
