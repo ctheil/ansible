@@ -8,6 +8,7 @@ sudo useradd caleb -m
 sudo -u caleb -i  
 
 git clone https://github.com/ctheil/ansible ~/home/ansible
+
 <!-- sudo passwd -u caleb -->
 <!-- // enter password & confirm -->
 as root: passwd
