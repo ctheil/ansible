@@ -3,7 +3,8 @@ __Update and install ansible&neovim__
 pacman -Syu --noconfirm && \
 pacman -S ansible neovim git sudo --noconfirm && \
 sudo groupadd users && \
-sudo useradd caleb -m && \
+sudo useradd caleb -m
+
 sudo -u caleb -i  
 
 git clone https://github.com/ctheil/ansible ~/home/ansible
@@ -11,6 +12,10 @@ git clone https://github.com/ctheil/ansible ~/home/ansible
 <!-- // enter password & confirm -->
 as root: passwd
 then change /etc/sudoers (Uncomment ALL line and line above)
+
+// update /etc/sudoers
+sudo sed -i 's/# Defaults targetpw/Defaults targetpw/' /etc/sudoers
+sudo sed -i 's/# ALL ALL=(/ALL ALL =(/' /etc/sudoers
 ```
 
 # BUG: 
