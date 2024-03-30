@@ -1,6 +1,8 @@
 - name: Install Git
   pacman:
     name: git
+  tags: 
+  - zsh
 - name: Install Zsh
   pacman:
     name: zsh
@@ -9,7 +11,7 @@
 - name: Install oh-my-zsh
   ansible.builtin.get_url:
     url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-    dest: /home/caleb
+    dest: ~/
   tags: 
   - zsh
 - name: Install zsh-autosuggestions

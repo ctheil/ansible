@@ -1,8 +1,7 @@
 - name: Install openssh
   pacman: 
     name: openssh
-  tags:
-    - ssh
+  tags: ssh
 - name: Ensure .ssh directory exists.
   become_user: root
   file:
