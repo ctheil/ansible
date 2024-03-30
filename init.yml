@@ -1,4 +1,4 @@
-- hosts: localhost
+- hosts: all
   become: true
   pre_tasks: 
     - name: Update Cache
@@ -6,7 +6,7 @@
         update_cache: true
       tags: 
       - node 
-      - zdh
+      - zsh
       - tools
       - dotfiles
       - ssh

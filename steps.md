@@ -1,9 +1,21 @@
 __Update and install ansible&neovim__
 ```
 pacman -Syu --noconfirm && \
-pacman -S ansible neovim git --noconfirm && \
-git clone https://github.com/ctheil/ansible /home
+pacman -S ansible neovim git sudo --noconfirm && \
+sudo groupadd users && \
+sudo useradd caleb -m && \
+sudo -u caleb -i  
+
+git clone https://github.com/ctheil/ansible ~/ansible
+<!-- sudo passwd -u caleb -->
+<!-- // enter password & confirm -->
+as root: passwd
+then change /etc/sudoers (Uncomment ALL line and line above)
 ```
+
+# BUG: 
+fatal: [localhost]: FAILED! => {"changed": false, "msg": "invalid key specified: /home/caleb/.ssh/id_ed25519.pub"}
+
 ## Start:
 `pacman -S sudo --noconfirm`
 `sudo pacman -Syu --noconfirm`
