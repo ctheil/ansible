@@ -10,9 +10,6 @@
   - zsh
 - name: Install oh-my-zsh
   shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  # ansible.builtin.get_url:
-  #   url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-  #   dest:  /home/caleb
   tags: 
   - zsh
 - name: Install zsh-autosuggestions

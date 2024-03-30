@@ -15,7 +15,7 @@ as root: passwd
 then change /etc/sudoers (Uncomment ALL line and line above)
 
 // update /etc/sudoers
-sudo sed -i 's/# Defaults targetpw/Defaults targetpw/' /etc/sudoers
+sudo sed -i 's/# Defaults targetpw/Defaults targetpw/' /etc/sudoers && \
 sudo sed -i 's/# ALL ALL=(/ALL ALL =(/' /etc/sudoers
 ```
 

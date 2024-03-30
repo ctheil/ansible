@@ -20,11 +20,45 @@
   tags:
     - dotfiles
     - ssh
-- name: Set authorized key took from file
-  authorized_key:
-    user: "{{ lookup('env', 'USER') }}"
-    state: present
-    key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519.pub"
+- name: Install pub ssh key
+  become_user: root
+  copy:
+    src: "{{ pub_source_key }}"
+    dest: "{{ pub_dest_key }}"
+    mode: 0600
   tags:
     - dotfiles
     - ssh
+- name: Append ssh public key to authorized_keys via shell
+  become_user: root
+  shell: |
+    cat /home/caleb/.ssh/id_ed25519.pub >> /home/caleb/.ssh/authorized_keys
+  args: 
+    executable: /bin/bash
+  tags:
+    - dotfiles
+    - ssh
+# - name: Debug file lookup
+#   become_user: root
+#   shell: cat /home/caleb/.ssh/id_ed25519.pub
+#   register: command_output
+# - name: Print to console
+#   become_user: root
+#   debug: 
+#     msg: "{{command_output.stdout}}"
+# - name: Debug lookup
+#   become_user: root
+#   debug: 
+#     msg: "{{ lookup('file', '/home/caleb/.ssh/id_ed25519.pub')}}"
+
+
+# - name: Set authorized key took from file
+#   become_user: root
+#   authorized_key:
+#     user: caleb
+#     state: present
+#     key: "{{ lookup('file', '/home/caleb/.ssh/id_ed25519.pub')}}"
+#     # key: "/home/caleb/.ssh/id_ed25519.pub"
+#   tags:
+#     - dotfiles
+#     - ssh
