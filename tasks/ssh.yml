@@ -3,7 +3,7 @@
     name: openssh
   tags: ssh
 - name: Ensure .ssh directory exists.
-  become_user: root
+  # become_user: root
   file:
     dest: "{{ dest_key | dirname }}"
     mode: 0700
@@ -12,7 +12,7 @@
     - dotfiles
     - ssh
 - name: Install ssh key
-  become_user: root
+  # become_user: root
   copy:
     src: "{{ source_key }}"
     dest: "{{ dest_key }}"
@@ -21,44 +21,31 @@
     - dotfiles
     - ssh
 - name: Install pub ssh key
-  become_user: root
+  # become_user: root
   copy:
-    src: "{{ pub_source_key }}"
-    dest: "{{ pub_dest_key }}"
-    mode: 0600
+    src: "{{ source_key }}.pub"
+    dest: "{{ dest_key }}.pub"
+    mode: 0644
   tags:
     - dotfiles
     - ssh
-- name: Append ssh public key to authorized_keys via shell
-  become_user: root
-  shell: |
-    cat /home/caleb/.ssh/id_ed25519.pub >> /home/caleb/.ssh/authorized_keys
-  args: 
-    executable: /bin/bash
+- name: Set authorized key took from file
+  authorized_key:
+    user: "{{lookup('env', 'USER')}}"
+    state: present
+    key: "{{lookup('env', 'HOME')}}/.ssh/id_ed25519.pub"
+  with_fileglob:
+  - "{{lookup('env', 'HOME')}}/.ssh/*.pub"
   tags:
     - dotfiles
     - ssh
-# - name: Debug file lookup
-#   become_user: root
-#   shell: cat /home/caleb/.ssh/id_ed25519.pub
-#   register: command_output
-# - name: Print to console
-#   become_user: root
-#   debug: 
-#     msg: "{{command_output.stdout}}"
-# - name: Debug lookup
-#   become_user: root
-#   debug: 
-#     msg: "{{ lookup('file', '/home/caleb/.ssh/id_ed25519.pub')}}"
+- name: add github to known hosts
+  ansible.builtin.known_hosts:
+    path: "/etc/ssh/ssh_known_hosts"
+    name: "github.com"
+    key: "{{lookup('pipe', 'ssh-keyscan -t rsa github.com')}}"
+    state: present
+  tags:
+    - dotfiles
+    - ssh
 
-
-# - name: Set authorized key took from file
-#   become_user: root
-#   authorized_key:
-#     user: caleb
-#     state: present
-#     key: "{{ lookup('file', '/home/caleb/.ssh/id_ed25519.pub')}}"
-#     # key: "/home/caleb/.ssh/id_ed25519.pub"
-#   tags:
-#     - dotfiles
-#     - ssh

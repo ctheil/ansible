@@ -13,8 +13,8 @@
   vars:
     source_key: "./.ssh/id_ed25519"
     dest_key: "/home/caleb/.ssh/id_ed25519"
-    pub_source_key: "./.ssh/id_ed25519.pub"
-    pub_dest_key: "/home/caleb/.ssh/id_ed25519.pub"
+    # pub_source_key: "./.ssh/id_ed25519.pub"
+    # pub_dest_key: "/home/caleb/.ssh/id_ed25519.pub"
   tasks: 
   # - include_tasks: tasks/zsh.yml
   # - include_tasks: tasks/node.yml

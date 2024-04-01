@@ -36,6 +36,10 @@ $ nvim ~/.zshrc
 change plugins=(git) -> plugins=(git zsh-autosuggestions zsh-syntax-highlighting vi-mode)
 ```
 
+```
+ansible-playbook local.yml --ask-vault-pass
+```
+
 *git clone zsh-autosuggestions*
 `sudo pacman -S zsh-autosuggestions --noconfirm`
 

@@ -1,4 +1,18 @@
-vars:
-    source_key: "./.ssh/id_rsa"
-    dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
-  
+- hosts: localhost
+  become: true
+  pre_tasks: 
+    - name: Update Cache
+      pacman: 
+        update_cache: true
+      tags: 
+      - node 
+      - zsh
+      - tools
+      - dotfiles
+      - ssh
+  vars:
+    source_key: "./.ssh/id_ed25519"
+    dest_key: "/home/caleb/.ssh/id_ed25519"
+  tasks:
+    - include_tasks: tasks/ssh.yml
+    - include_tasks: tasks/dotfiles.yml
