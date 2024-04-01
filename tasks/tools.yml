@@ -23,3 +23,17 @@
     name: fzf
   tags:
   - tools
+- name: Install p10k
+  become: true
+  become_user: "{{lookup('env', 'USER')}}"
+  ansible.builtin.git:
+    repo: https://github.com/romkatv/powerlevel10k.git
+    dest: ~/powerlevel10k
+    depth: 1
+# - name: Install JetBrains font
+#   become: true
+#   become_user: "{{lookup('env', 'USER')}}"
+#   ansible.builtin.get_url:
+#     url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/JetBrainsMono.zip 
+#     dest: ~/.local/share/fonts
+

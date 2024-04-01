@@ -2,12 +2,20 @@
   pacman:
     name: stow
 - name: Cloning dotfiles
+  become: yes
+  become_user: "{{lookup('env', 'USER')}}"
   ansible.builtin.git:
     repo: 'git@github.com:ctheil/dotfiles.git'
-    dest: "/home/dotfiles"
+    dest: "~/dotfiles"
     recursive: yes
     update: yes
     accept_hostkey: yes
-    # version: arch
+    version: arch
+  tags:
+    - dotfiles
+- name: Stow dotfiles
+  become: yes
+  become_user: "{{lookup('env', 'USER')}}"
+  shell: cd ~/dotfiles && stow .
   tags:
     - dotfiles

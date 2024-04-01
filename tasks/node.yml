@@ -3,7 +3,7 @@
     name: ["nodejs", "npm"]
   tags: 
   - node
-- name: Install n # BUG: global error
+- name: Install n
   npm: 
     name: n
     global: true

@@ -3,7 +3,8 @@
     name: openssh
   tags: ssh
 - name: Ensure .ssh directory exists.
-  # become_user: root
+  become: yes
+  become_user: "{{lookup('env', 'USER')}}"
   file:
     dest: "{{ dest_key | dirname }}"
     mode: 0700
@@ -12,7 +13,8 @@
     - dotfiles
     - ssh
 - name: Install ssh key
-  # become_user: root
+  become: yes
+  become_user: "{{lookup('env', 'USER')}}"
   copy:
     src: "{{ source_key }}"
     dest: "{{ dest_key }}"
@@ -21,7 +23,8 @@
     - dotfiles
     - ssh
 - name: Install pub ssh key
-  # become_user: root
+  become: yes
+  become_user: "{{lookup('env', 'USER')}}"
   copy:
     src: "{{ source_key }}.pub"
     dest: "{{ dest_key }}.pub"
@@ -33,9 +36,9 @@
   authorized_key:
     user: "{{lookup('env', 'USER')}}"
     state: present
-    key: "{{lookup('env', 'HOME')}}/.ssh/id_ed25519.pub"
-  with_fileglob:
-  - "{{lookup('env', 'HOME')}}/.ssh/*.pub"
+    key: "{{lookup('file', '~/.ssh/id_ed25519.pub')}}"
+  # with_fileglob:
+  # - "{{lookup('env', 'HOME')}}/.ssh/*.pub"
   tags:
     - dotfiles
     - ssh

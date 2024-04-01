@@ -13,7 +13,11 @@ RUN echo 'caleb ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 USER caleb
 WORKDIR /home/caleb
 
+ENV USER=caleb
+
 FROM caleb
+RUN mkdir ~/.ssh
+RUN sudo chown -R caleb:caleb ~/.ssh
 RUN echo 'export USER=$(whoami)'
 COPY --chown=caleb . ./ansible
 CMD ["sh", "-c". "ansible-playbook $TAGS local.yml"]
