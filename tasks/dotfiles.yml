@@ -1,6 +1,9 @@
 - name: Install stow
   pacman:
     name: stow
+- name: JetBrains
+  pacman: 
+    name: ttf-jetbrains-mono-nerd
 - name: Cloning dotfiles
   become: yes
   become_user: "{{lookup('env', 'USER')}}"
